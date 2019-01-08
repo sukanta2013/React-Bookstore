@@ -4,12 +4,14 @@ import Container from 'muicss/lib/react/container';
 import Col from "muicss/lib/react/col";
 import Row from "muicss/lib/react/row";
 import Divider from 'muicss/lib/react/divider';
+import Button from 'muicss/lib/react/button';
 class ListOfBooks extends Component{
     render(){
-        const { books } = this.props.books;
-        const { onDelete } = this.props.onDelete;
+        // const { books } = this.props.books;
+        const { onDelete, onAdd, onEdit, books } = {...this.props};
         return(
         <Container fluid={true}>
+        <Button color="primary" onClick={onAdd}>Add Books</Button>
             <Row>
                 <Col md="1" xs="6">Title</Col>
                 <Col md="1" xs="6">Author</Col>
@@ -28,6 +30,7 @@ class ListOfBooks extends Component{
                     key={book.id}
                     book ={book}
                     onDelete={onDelete}
+                    onEdit = {onEdit}
                 />
             ))}
         </Container>

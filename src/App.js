@@ -1,33 +1,92 @@
 import React, { Component } from "react";
 import NavBar from "./components/navbar";
-import Counters from "./components/counters";
-import ListOfBooks from './components/listOfBooks'
+import ListOfBooks from './components/listOfBooks';
+import AddOrEditBook from './components/addOrEditBook';
+import Modal from 'react-modal';
 import "./App.css";
 
 import Container from 'muicss/lib/react/container';
 
+const customStyles = {
+  content : {
+    width                 : '500px',
+    minHeight             : '600px',
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : '10%',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
+
 class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      books:[],
+      modalIsOpen: false,
+      titleForAddOrEdit : '',
+      book : {}
+    }
+  }
+  componentDidMount(){
+    this.props.onGetListOfBooks;
+    this.setState({
+      books: this.props.books
+    })
+  }
+  openAddForm= () =>{
+    this.setState({
+      modalIsOpen: true,
+      titleForAddOrEdit: 'Add Book',
+      book: {}
+    });
+  }
+  openEditForm = (book) =>{
+    this.setState({
+      modalIsOpen: true,
+      titleForAddOrEdit: 'Edit Book',
+      book : book
+    })
+  }
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
   render() {
+    // const books = this.state.books;
+    const { titleForAddOrEdit, book } = {...this.state}
     const {
       books,
+      onGetListOfBooks,
       onDelete,
-      onEdit,
-      counters,
-      resetCounter,
-      incrementCounter,
-      deleteCounter
     } = this.props;
     return (
       <Container>
       <React.Fragment>
-            <NavBar totalCounters={this.props.books.length} />
+            <NavBar totalCounters={[...books.books].length | 0}/>
             <main className="container">
               <ListOfBooks
-                books={books}
+                books={books.books}
                 onDelete={onDelete}
-                onEdit={onEdit}
+                onEdit={this.openEditForm}
+                onAdd={this.openAddForm}
+                onGetListOfBooks = {onGetListOfBooks}
               />
-            </main> 
+            </main>
+            
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              // onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              style={customStyles}
+              contentLabel="Example Modal"
+            >
+            <AddOrEditBook 
+              title = {titleForAddOrEdit}
+              book = {book}
+             />
+            </Modal>
       </React.Fragment>
       </Container>
     );

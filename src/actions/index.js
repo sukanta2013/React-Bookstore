@@ -1,30 +1,21 @@
-// export function resetCounter(counters) {
-//   console.log("counters: ", counters);
-// }
-export const resetCounter = counters => {
+export const getListOfBooks = () =>{
   return {
-    type: "COUNTER_RESET",
-    payload: counters
-  };
-};
-export const incrementCounter = counter => {
-  return {
-    type: "COUNTER_INCREMENT",
-    payload: counter
-  };
-};
-export const deleteCounter = counterId => {
-  return {
-    type: "COUNTER_DELETE",
-    payload: counterId
-  };
-};
-export const onDelete = bookId =>{
-  return {
-    type: "BOOKS_DELETE",
-    payload: bookId
+    type: "BOOKS_LIST",
+    paload: null
   }
 }
 export const onEdit = book =>{
 
+}
+export const onAdd = book=>{
+  
+}
+export const onAddOrEditSubmit = book =>{
+
+}
+export const onDelete = bookId=>{
+  return {
+    type: "BOOKS_DELETE",
+    payload: bookId
+  };
 }

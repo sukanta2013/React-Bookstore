@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import CounterReducerAction from "./reducer-actions";
 import BooksReducer from "./books-reducer";
 
 /*
@@ -8,7 +7,6 @@ import BooksReducer from "./books-reducer";
  * */
 
 const allReducers = combineReducers({
-  counters: CounterReducerAction,
   books: BooksReducer
 });
 
