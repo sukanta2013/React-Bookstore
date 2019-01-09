@@ -11,7 +11,10 @@ export const onAdd = book=>{
   
 }
 export const onAddOrEditSubmit = book =>{
-
+  return {
+    type: "BOOKS_ADD_EDIT",
+    payload: book
+  }
 }
 export const onDelete = bookId=>{
   return {

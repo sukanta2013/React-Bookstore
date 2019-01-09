@@ -6,7 +6,8 @@ import {
 } from "react-redux";
 import {
   onDelete,
-  getListOfBooks
+  getListOfBooks,
+  onAddOrEditSubmit
 } from "../actions";
 import {
   bindActionCreators
@@ -21,7 +22,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
       onDelete: onDelete,
-      onGetListOfBooks: getListOfBooks
+      onGetListOfBooks: getListOfBooks,
+      onAddOrEditSubmit: onAddOrEditSubmit
     },
     dispatch
   );

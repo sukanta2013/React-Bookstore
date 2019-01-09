@@ -60,11 +60,12 @@ class App extends Component {
       books,
       onGetListOfBooks,
       onDelete,
+      onAddOrEditSubmit
     } = this.props;
     return (
       <Container>
       <React.Fragment>
-            <NavBar totalCounters={[...books.books].length | 0}/>
+            <NavBar totalCounters={books.books ? [...books.books].length : 0 }/>
             <main className="container">
               <ListOfBooks
                 books={books.books}
@@ -85,6 +86,7 @@ class App extends Component {
             <AddOrEditBook 
               title = {titleForAddOrEdit}
               book = {book}
+              onAddOrEditSubmit= {onAddOrEditSubmit}
              />
             </Modal>
       </React.Fragment>
