@@ -13,7 +13,8 @@ export const onAdd = book=>{
 export const onAddOrEditSubmit = book =>{
   return {
     type: "BOOKS_ADD_EDIT",
-    payload: book
+    payload: book,
+    modalIsOpen: false
   }
 }
 export const onDelete = bookId=>{
