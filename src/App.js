@@ -27,13 +27,15 @@ class App extends Component {
       books:[],
       modalIsOpen: false,
       titleForAddOrEdit : '',
-      book : {}
+      book : {},
+      totalBooks:0
     }
   }
   componentDidMount(){
     this.props.onGetListOfBooks;
     this.setState({
-      books: this.props.books
+      books: this.props.books,
+      totalBooks: this.props.books.books.length
     })
   }
   openAddForm= () =>{
@@ -53,15 +55,19 @@ class App extends Component {
   closeModal = () => {
     this.setState({modalIsOpen: false});
   }
-  
+  booksCount = (count) =>{
+    this.setState({
+      totalBooks:count
+    })
+  }
   render() {
     // const books = this.state.books;
-    const { titleForAddOrEdit, book, modalIsOpen } = {...this.state}
+    const { titleForAddOrEdit, book, modalIsOpen, totalBooks } = {...this.state}
     const {
       books,
       onGetListOfBooks,
       onDelete,
-      onAddOrEditSubmit
+      onAddOrEditSubmit,
     } = this.props;
 
     const onSubmit = (event) =>{
@@ -72,7 +78,7 @@ class App extends Component {
     return (
       <Container>
       <React.Fragment>
-            <NavBar totalCounters={[...books.books].length || 0}/>
+            <NavBar totalCounters={totalBooks}/>
             <main className="container">
               <ListOfBooks
                 books={books.books}
@@ -80,6 +86,7 @@ class App extends Component {
                 onEdit={this.openEditForm}
                 onAdd={this.openAddForm}
                 onGetListOfBooks = {onGetListOfBooks}
+                booksCount = {this.booksCount}
               />
             </main>
             
