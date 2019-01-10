@@ -29,8 +29,8 @@ function addOrEditBook(state, book) {
       books: books,
     }
   } else {
-    // let lastBookId = books.slice(-1)[0].id || 1
-    // book.id = lastBookId == 1 ? lastBookId : lastBookId + 1
+    let lastBookId = books.length!=0? books.slice(-1)[0].id : 0
+    book.id = lastBookId + 1
     books.push({ ...book
     });
     return {
