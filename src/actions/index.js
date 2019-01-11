@@ -4,6 +4,13 @@ export const getListOfBooks = () =>{
     paload: null
   }
 }
+export const onFilter =(searchKey, colName) =>{
+  return {
+    type: "BOOKS_SEARCH",
+    payload: searchKey,
+    colName: colName
+  }
+}
 export const onEdit = book =>{
 
 }

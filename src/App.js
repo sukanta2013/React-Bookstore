@@ -55,11 +55,11 @@ class App extends Component {
   closeModal = () => {
     this.setState({modalIsOpen: false});
   }
-  booksCount = (count) =>{
-    this.setState({
-      totalBooks:count
-    })
-  }
+  // booksCount = (count) =>{
+  //   this.setState({
+  //     totalBooks:count
+  //   })
+  // }
   render() {
     // const books = this.state.books;
     const { titleForAddOrEdit, book, modalIsOpen, totalBooks } = {...this.state}
@@ -68,6 +68,7 @@ class App extends Component {
       onGetListOfBooks,
       onDelete,
       onAddOrEditSubmit,
+      onFilter
     } = this.props;
 
     const onSubmit = (event) =>{
@@ -78,7 +79,7 @@ class App extends Component {
     return (
       <Container>
       <React.Fragment>
-            <NavBar totalCounters={totalBooks}/>
+            <NavBar totalCounters={[...books.books].length || 0}/>
             <main className="container">
               <ListOfBooks
                 books={books.books}
@@ -86,7 +87,8 @@ class App extends Component {
                 onEdit={this.openEditForm}
                 onAdd={this.openAddForm}
                 onGetListOfBooks = {onGetListOfBooks}
-                booksCount = {this.booksCount}
+                // booksCount = {this.booksCount}
+                onFilter = {onFilter}
               />
             </main>
             

@@ -8,15 +8,23 @@ export default function (state = BookData, action) {
       return addOrEditBook(state, action.payload, action.modalIsOpen);
     case "BOOKS_EDIT":
       return editBook(state, action.payload);
+    case "BOOKS_SEARCH":
+      return searchBooks(BookData, action.payload, action.colName)
     case "BOOKS_DELETE":
       return deleteBook(state, action.payload)
   }
   return state;
 }
 
-function getAllBooks(state) {
-  const allBooks = [...state];
+function getAllBooks(state, initialState = BookData ) {
+  const allBooks = {...initialState,...state};
   return allBooks;
+}
+function searchBooks(state, searchKey, colName){
+  let inBooks = [...state.books];
+  // let inBooks = getAllBooks(state).books;
+  let books = inBooks.filter(book=>book[colName].toLowerCase().includes(searchKey))
+  return {books: books}
 }
 
 function addOrEditBook(state, book) {

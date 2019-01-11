@@ -21,20 +21,21 @@ class ListOfBooks extends Component{
         })
     }
     componentWillMount(){
-        this.setState({books: this.props.books})
+        // this.setState({books: this.props.books})
     }
     filter = (event, colName)=> {
-        let searchKey = event.target.value.trim().toLowerCase();
-        let books = this.props.books.filter(book=>book[colName].toLowerCase().includes(searchKey))
-        this.props.booksCount(books.length)
-        this.setState({
-            books:books
-        })
+        this.props.onFilter(event.target.value.toLowerCase(), colName)
+        // let searchKey = event.target.value.trim().toLowerCase();
+        // let books = this.props.books.filter(book=>book[colName].toLowerCase().includes(searchKey))
+        // this.props.booksCount(books.length)
+        // this.setState({
+        //     books:books
+        // })
     }
     render(){
         // const { books } = this.props.books;
-        const { onDelete, onAdd, onEdit} = {...this.props};
-        const{ books } = {...this.state}
+        const { onDelete, onAdd, onEdit, books} = {...this.props};
+        // const{ books } = {...this.state}
         return(
         <Container fluid={true}>
         <Button color="primary" onClick={onAdd}>Add Books</Button>

@@ -7,7 +7,8 @@ import {
 import {
   onDelete,
   getListOfBooks,
-  onAddOrEditSubmit
+  onAddOrEditSubmit,
+  onFilter
 } from "../actions";
 import {
   bindActionCreators
@@ -23,7 +24,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
       onDelete: onDelete,
       onGetListOfBooks: getListOfBooks,
-      onAddOrEditSubmit: onAddOrEditSubmit
+      onAddOrEditSubmit: onAddOrEditSubmit,
+      onFilter: onFilter
     },
     dispatch
   );
